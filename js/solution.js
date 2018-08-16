@@ -317,6 +317,7 @@ function sendFile(files) {
 		const fileTitle = delExtension(file.name);
 		formData.append('title', fileTitle);
 		formData.append('image', file);
+		formData.append('comments', formComment);
 	});
 
 	showElement(loader);
