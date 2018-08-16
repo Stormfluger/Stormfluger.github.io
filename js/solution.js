@@ -373,9 +373,10 @@ function setReview(id) {
 		createWrapforCanvasComment();
 		createCanvas();
 		currentImage.dataset.load = 'load';
+		updateCommentForm(dataGetParse.comments);
 	});
 
-	updateCommentForm(dataGetParse.comments);
+	//updateCommentForm(dataGetParse.comments);
 }
 
 // раскрытие пунктов меню
