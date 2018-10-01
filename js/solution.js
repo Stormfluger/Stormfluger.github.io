@@ -473,11 +473,11 @@ function createWrapforCanvasComment() {
 
 	// отображаем комментарии (по клику) поверх остальных
 	wrapCommentsCanvas.addEventListener('click', event => {
-		if (event.target.closest('form.comments__form')) {
-			Array.from(wrapCommentsCanvas.querySelectorAll('form.comments__form')).forEach(form => {
+		if (event.target.closest('.comments__form')) {
+			Array.from(wrapCommentsCanvas.querySelectorAll('.comments__form')).forEach(form => {
 				form.style.zIndex = 2;
 			});
-			event.target.closest('form.comments__form').style.zIndex = 3;
+			event.target.closest('.comments__form').style.zIndex = 3;
 		}
 	});
 }
@@ -519,7 +519,13 @@ function createCommentForm(x, y) {
 
 	//кнопка "закрыть"
 	formComment.querySelector('.comments__close').addEventListener('click', () => {
-		formComment.querySelector('.comments__marker-checkbox').checked = false;
+		// если есть комментарии, то просто сворачиваем
+		if (formComment.querySelector('.comment').length>1) {
+			formComment.querySelector('.comments__marker-checkbox').checked = false;
+		} else {
+			// если комментариев нет, удалаем форму
+			formComment.remove();
+		}
 	});
 
 	// кнопка "отправить"
