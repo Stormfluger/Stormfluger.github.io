@@ -475,33 +475,37 @@ function createWrapforCanvasComment() {
 	wrapCommentsCanvas.addEventListener('click', event => {
 		if (event.target.closest('.comments__form')) {
 			Array.from(wrapCommentsCanvas.querySelectorAll('.comments__form')).forEach(form => {
-				form.style.zIndex = 2;
+				form.style.zIndex = 10;
 			});
-			event.target.closest('.comments__form').style.zIndex = 3;
+			event.target.closest('.comments__form').style.zIndex = 11;
 		}
 	});
 }
 
 //форма для комментариев
 function createCommentForm(x, y) {
-	const formComment = document.createElement('form');
+	const formComment = document.querySelector('.comments__form__sample').cloneNode(true);
+	formComment.classList.remove('comments__form__sample');
 	formComment.classList.add('comments__form');
-	formComment.innerHTML = `
-		<span class="comments__marker"></span><input type="checkbox" class="comments__marker-checkbox">
-		<div class="comments__body">
-			<div class="comment">
-				<div class="loader">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
-			<textarea class="comments__input" type="text" placeholder="Напишите ответ..."></textarea>
-			<input class="comments__close" type="button" value="Закрыть">
-			<input class="comments__submit" type="submit" value="Отправить">
-		</div>`;
+	formComment.style.display = '';
+    formComment.style.zIndex = 10;
+	// formComment.classList.add('comments__form');
+	// formComment.innerHTML = `
+	// 	<span class="comments__marker"></span><input type="checkbox" class="comments__marker-checkbox">
+	// 	<div class="comments__body">
+	// 		<div class="comment">
+	// 			<div class="loader">
+	// 				<span></span>
+	// 				<span></span>
+	// 				<span></span>
+	// 				<span></span>
+	// 				<span></span>
+	// 			</div>
+	// 		</div>
+	// 		<textarea class="comments__input" type="text" placeholder="Напишите ответ..."></textarea>
+	// 		<input class="comments__close" type="button" value="Закрыть">
+	// 		<input class="comments__submit" type="submit" value="Отправить">
+	// 	</div>`;
 
 	//смещение, чтобы маркер встал туда, куда кликнули
 	const left = x - 22;
