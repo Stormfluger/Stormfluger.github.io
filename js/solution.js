@@ -317,7 +317,6 @@ function sendFile(files) {
 		const fileTitle = delExtension(file.name);
 		formData.append('title', fileTitle);
 		formData.append('image', file);
-		//formData.append('comments', formComment);
 	});
 
 	showElement(loader);
@@ -473,39 +472,35 @@ function createWrapforCanvasComment() {
 
 	// отображаем комментарии (по клику) поверх остальных
 	wrapCommentsCanvas.addEventListener('click', event => {
-		if (event.target.closest('.comments__form')) {
-			Array.from(wrapCommentsCanvas.querySelectorAll('.comments__form')).forEach(form => {
-				form.style.zIndex = 10;
+		if (event.target.closest('form.comments__form')) {
+			Array.from(wrapCommentsCanvas.querySelectorAll('form.comments__form')).forEach(form => {
+				form.style.zIndex = 2;
 			});
-			event.target.closest('.comments__form').style.zIndex = 11;
+			event.target.closest('form.comments__form').style.zIndex = 3;
 		}
 	});
 }
 
 //форма для комментариев
 function createCommentForm(x, y) {
-	const formComment = document.querySelector('.comments__form').cloneNode(true);
-	formComment.classList.remove('comments__form');
+	const formComment = document.createElement('form');
 	formComment.classList.add('comments__form');
-	formComment.style.display = '';
-    formComment.style.zIndex = 10;
-	// formComment.classList.add('comments__form');
-	// formComment.innerHTML = `
-	// 	<span class="comments__marker"></span><input type="checkbox" class="comments__marker-checkbox">
-	// 	<div class="comments__body">
-	// 		<div class="comment">
-	// 			<div class="loader">
-	// 				<span></span>
-	// 				<span></span>
-	// 				<span></span>
-	// 				<span></span>
-	// 				<span></span>
-	// 			</div>
-	// 		</div>
-	// 		<textarea class="comments__input" type="text" placeholder="Напишите ответ..."></textarea>
-	// 		<input class="comments__close" type="button" value="Закрыть">
-	// 		<input class="comments__submit" type="submit" value="Отправить">
-	// 	</div>`;
+	formComment.innerHTML = `
+		<span class="comments__marker"></span><input type="checkbox" class="comments__marker-checkbox">
+		<div class="comments__body">
+			<div class="comment">
+				<div class="loader">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<textarea class="comments__input" type="text" placeholder="Напишите ответ..."></textarea>
+			<input class="comments__close" type="button" value="Закрыть">
+			<input class="comments__submit" type="submit" value="Отправить">
+		</div>`;
 
 	//смещение, чтобы маркер встал туда, куда кликнули
 	const left = x - 22;
@@ -523,13 +518,7 @@ function createCommentForm(x, y) {
 
 	//кнопка "закрыть"
 	formComment.querySelector('.comments__close').addEventListener('click', () => {
-		// если есть комментарии, то просто сворачиваем
-		if (formComment.querySelector('.comment').length>1) {
-			formComment.querySelector('.comments__marker-checkbox').checked = false;
-		} else {
-			// если комментариев нет, удалаем форму
-			formComment.remove();
-		}
+		formComment.querySelector('.comments__marker-checkbox').checked = false;
 	});
 
 	// кнопка "отправить"
