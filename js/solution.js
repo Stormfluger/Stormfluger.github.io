@@ -484,8 +484,8 @@ function createWrapforCanvasComment() {
 
 //форма для комментариев
 function createCommentForm(x, y) {
-	const formComment = document.querySelector('.comments__form__sample').cloneNode(true);
-	formComment.classList.remove('comments__form__sample');
+	const formComment = document.querySelector('.comments__form').cloneNode(true);
+	formComment.classList.remove('comments__form');
 	formComment.classList.add('comments__form');
 	formComment.style.display = '';
     formComment.style.zIndex = 10;
