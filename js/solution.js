@@ -553,7 +553,8 @@ function createCommentForm(x, y) {
 	function commentsSend(message) {
 		fetch(`${urlApi}/pic/${dataGetParse.id}/comments`, {
 				method: 'POST',
-				body: message,
+			        credentials: 'same-origin',
+				body: body,
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				},
