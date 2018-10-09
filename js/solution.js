@@ -497,7 +497,7 @@ function createCommentForm(x, y) {
 					<span></span>
 				</div>
 			</div>
-			<textarea class="comments__input" type="text" placeholder="Напишите ответ..."></textarea>
+			<textarea class="comments__input" type="text" cols="24" wrap="hard" placeholder="Напишите ответ..."></textarea>
 			<input class="comments__close" type="button" value="Закрыть">
 			<input class="comments__submit" type="submit" value="Отправить">
 		</div>`;
